@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FDECEF; /* Soft background color */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .register-container {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #A888B5; /* Title color */
+  }
+  
+  .form-container {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+
+
+  
+  form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #A888B5;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .cta-btn {
+    background: linear-gradient(90deg, #A888B5, #EFB6C8);
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  .cta-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #FDECEF; /* Soft background color */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .rewant form in center and title as register
+
+gister-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #A888B5; /* Title color */
+  }
+  
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    background: linear-gradient(90deg, #A888B5, #EFB6C8); /* Gradient background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 180px;
+    height: 250px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    color: white; /* White text for contrast */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #EFB6C8, #A888B5); /* Hover effect */
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #730f91; /* White text */
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #F0F0F0; /* Softer white for paragraphs */
+  }
+
+
+    

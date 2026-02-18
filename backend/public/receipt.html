@@ -1,0 +1,52 @@
+<!-- public/receipt.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Donation Receipt</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .receipt-box {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #eee;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      font-family: 'Arial';
+    }
+    .receipt-box h2 {
+      text-align: center;
+      color: #2d2d2d;
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt-box">
+    <h2>📚 Books of Hope - Donation Receipt</h2>
+    <p><strong>Donation ID:</strong> <span id="donationId"></span></p>
+    <p><strong>Donor:</strong> <span id="donorName"></span></p>
+    <p><strong>Book:</strong> <span id="bookDetails"></span></p>
+    <p><strong>Campaign:</strong> <span id="campaign"></span></p>
+    <p><strong>Date:</strong> <span id="donationDate"></span></p>
+    <p><strong>Impact:</strong> <span id="impactMsg"></span></p>
+    <hr />
+    <button onclick="downloadPDF()">Download Receipt PDF</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    // Dummy fill (replace with actual query params later)
+    const urlParams = new URLSearchParams(window.location.search);
+    document.getElementById('donationId').innerText = urlParams.get('id');
+    document.getElementById('donorName').innerText = urlParams.get('name');
+    document.getElementById('bookDetails').innerText = urlParams.get('book');
+    document.getElementById('campaign').innerText = urlParams.get('campaign');
+    document.getElementById('donationDate').innerText = new Date().toLocaleDateString();
+    document.getElementById('impactMsg').innerText = "This book will help over 30 students! ❤️";
+
+    function downloadPDF() {
+      html2pdf().from(document.querySelector(".receipt-box")).save("BooksofHope-Receipt.pdf");
+    }
+  </script>
+</body>
+</html>

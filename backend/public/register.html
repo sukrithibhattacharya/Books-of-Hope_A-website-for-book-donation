@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Registration Type</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8e8ec; /* Light pink background */
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #7a3e72;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #e9a0b1, #b26ba8);
+      color: white;
+      padding: 40px 20px;
+      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 1rem;
+    }
+
+    a {
+      text-decoration: none; /* Removes underline */
+      color: inherit; /* Ensures text color is inherited from the card */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Select Registration Type</h1>
+    <div class="cards">
+      <a href="/submit_ngo.html" class="card">
+        <h2>Register as NGO</h2>
+        <p>Non-governmental organizations.</p>
+      </a>
+
+      <a href="/edu-register.html" class="card">
+        <h2>Register as Educational Institute</h2>
+        <p>Schools, colleges, and universities.</p>
+      </a>
+
+      <a href="/student-register.html" class="card">
+        <h2>Register as Student</h2>
+        <p>Students looking for books.</p>
+      </a>
+
+      <a href="/donor-register.html" class="card">
+        <h2>Register as Donor</h2>
+        <p>Individuals wanting to donate books.</p>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

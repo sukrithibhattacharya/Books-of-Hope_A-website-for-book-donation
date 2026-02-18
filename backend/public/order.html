@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Book | Books of Hope</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tinos&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Tinos', serif;
+      background-color: #fdebf3;
+      color: #333;
+    }
+    header {
+      background-color: #fff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #6a1b9a;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #6a1b9a;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+      gap: 2rem;
+    }
+    .book-summary, .order-form {
+      flex: 1 1 45%;
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .book-image {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .book-image img {
+      max-width: 300px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .book-summary h2 {
+      color: #6a1b9a;
+      margin-top: 0;
+    }
+    .book-details p {
+      margin: 0.7rem 0;
+      line-height: 1.5;
+    }
+    .book-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 1.5rem 0;
+      color: #6a1b9a;
+    }
+    .order-form h2 {
+      color: #6a1b9a;
+      margin-top: 0;
+    }
+    .order-form h3 {
+      color: #6a1b9a;
+      margin: 1.5rem 0 1rem 0;
+    }
+    .order-form label {
+      display: block;
+      margin: 1rem 0 0.3rem;
+      font-weight: bold;
+    }
+    .order-form input, .order-form textarea, .order-form select {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: 'Tinos', serif;
+      box-sizing: border-box;
+    }
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-column {
+      flex: 1;
+    }
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      margin: 1rem 0;
+    }
+    .quantity-selector label {
+      margin: 0 1rem 0 0;
+      flex-shrink: 0;
+    }
+    .quantity-selector input {
+      width: 80px;
+    }
+    
+    /* Payment Section Styles */
+    .payment-section {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ddd;
+    }
+    .payment-options {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .payment-option {
+      flex: 1;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .payment-option.selected {
+      border-color: #6a1b9a;
+      background-color: #f3e5f5;
+    }
+    .payment-option:hover {
+      border-color: #6a1b9a;
+    }
+    .payment-option input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+    .payment-option label {
+      margin: 0;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .payment-option .payment-desc {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+    
+    .card-payment-form {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .card-payment-form.show {
+      display: block;
+    }
+    .card-payment-form h4 {
+      color: #6a1b9a;
+      margin: 0 0 1rem 0;
+    }
+    
+    /* Payment Tabs */
+    .payment-tabs {
+      display: flex;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #ddd;
+      overflow-x: auto;
+    }
+    .payment-tab {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      min-width: 120px;
+    }
+    .payment-tab:hover {
+      background-color: #f0f0f0;
+    }
+    .payment-tab.active {
+      border-bottom-color: #6a1b9a;
+      color: #6a1b9a;
+      font-weight: bold;
+    }
+    .tab-icon {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    /* Payment Forms */
+    .payment-form {
+      display: none;
+    }
+    .payment-form.active {
+      display: block;
+    }
+    .payment-form h5 {
+      color: #6a1b9a;
+      margin: 1.5rem 0 0.5rem 0;
+    }
+    
+    .accepted-cards {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .accepted-cards span {
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+    .card-logos {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .card-logo {
+      padding: 0.3rem 0.6rem;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .visa { color: #1a1f71; }
+    .mastercard { color: #eb001b; }
+    .rupay { color: #00a64f; }
+    .amex { color: #006fcf; }
+    .maestro { color: #cc0000; }
+    
+    .card-form-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .card-form-column {
+      flex: 1;
+    }
+    .card-form-column.small {
+      flex: 0 0 100px;
+    }
+    
+    /* Net Banking Styles */
+    #bankSelect {
+      margin-bottom: 1rem;
+    }
+    
+    /* Wallet Options */
+    .wallet-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .wallet-option {
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .wallet-option:hover {
+      border-color: #6a1b9a;
+      background-color: #f3e5f5;
+    }
+    .wallet-option.selected {
+      border-color: #6a1b9a;
+      background-color: #f3e5f5;
+    }
+    .wallet-logo {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .paytm-logo { color: #00baf2; }
+    .phonepe-logo { color: #5f259f; }
+    .gpay-logo { color: #4285f4; }
+    .amazon-logo { color: #ff9900; }
+    .wallet-desc {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .upi-section {
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+    }
+    
+    .payment-note {
+      background-color: #e3f2fd;
+      border: 1px solid #bbdefb;
+      border-radius: 4px;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #1976d2;
+    }
+    .note-icon {
+      margin-right: 0.5rem;
+    }
+    
+    .order-summary {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ddd;
+    }
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+    .order-form button {
+      margin-top: 2rem;
+      background-color: #6a1b9a;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    .order-form button:hover {
+      background-color: #4a148c;
+    }
+    footer {
+      background-color: #6a1b9a;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      nav ul {
+        margin-top: 1rem;
+      }
+      .form-row, .card-form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+      .payment-options {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Books of Hope</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html">Browse</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <section class="order-form">
+      <h2>Order Details</h2>
+      <form id="orderForm">
+        <div class="quantity-selector">
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-column">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required>
+          </div>
+          <div class="form-column">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-column">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-column">
+            <label for="deliveryMethod">Delivery Method</label>
+            <select id="deliveryMethod" name="deliveryMethod" required>
+              <option value="standard">Standard Delivery (3-5 days)</option>
+              <option value="express">Express Delivery (1-2 days)</option>
+              <option value="pickup">Store Pickup</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="address">Delivery Address</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+
+        <label for="note">Additional Notes (Optional)</label>
+        <textarea id="note" name="note" rows="2"></textarea>
+
+        <!-- Payment Section -->
+        <div class="payment-section">
+          <h3>Payment Method</h3>
+          <div class="payment-options">
+            <div class="payment-option selected" data-payment="cod">
+              <input type="radio" id="cod" name="paymentMethod" value="cod" checked>
+              <label for="cod">💵 Cash on Delivery</label>
+              <div class="payment-desc">Pay when you receive your order</div>
+            </div>
+            <div class="payment-option" data-payment="online">
+              <input type="radio" id="online" name="paymentMethod" value="online">
+              <label for="online">💳 Online Payment</label>
+              <div class="payment-desc">Pay securely online now</div>
+            </div>
+          </div>
+
+          <!-- Online Payment Gateway -->
+          <div class="card-payment-form" id="onlinePaymentGateway">
+            <h4>Select Payment Method</h4>
+            
+            <!-- Payment Method Tabs -->
+            <div class="payment-tabs">
+              <div class="payment-tab active" data-tab="credit-card">
+                <span class="tab-icon">💳</span>
+                Credit Card
+              </div>
+              <div class="payment-tab" data-tab="debit-card">
+                <span class="tab-icon">💳</span>
+                Debit Card
+              </div>
+              <div class="payment-tab" data-tab="net-banking">
+                <span class="tab-icon">🏦</span>
+                Net Banking
+              </div>
+              <div class="payment-tab" data-tab="upi-wallets">
+                <span class="tab-icon">📱</span>
+                UPI & Wallets
+              </div>
+            </div>
+
+            <!-- Credit Card Form -->
+            <div class="payment-form active" id="credit-card-form">
+              <div class="accepted-cards">
+                <span>We Accept:</span>
+                <div class="card-logos">
+                  <div class="card-logo visa">VISA</div>
+                  <div class="card-logo mastercard">MasterCard</div>
+                  <div class="card-logo rupay">RuPay</div>
+                  <div class="card-logo amex">AMEX</div>
+                </div>
+              </div>
+              
+              <label for="creditCardNumber">Credit Card Number</label>
+              <input type="text" id="creditCardNumber" name="creditCardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+              
+              <div class="card-form-row">
+                <div class="card-form-column">
+                  <label for="creditCardName">Cardholder Name</label>
+                  <input type="text" id="creditCardName" name="creditCardName" placeholder="John Doe">
+                </div>
+                <div class="card-form-column small">
+                  <label for="creditExpiryDate">MM/YY</label>
+                  <input type="text" id="creditExpiryDate" name="creditExpiryDate" placeholder="12/28" maxlength="5">
+                </div>
+                <div class="card-form-column small">
+                  <label for="creditCvv">CVV</label>
+                  <input type="text" id="creditCvv" name="creditCvv" placeholder="123" maxlength="4">
+                </div>
+              </div>
+            </div>
+
+            <!-- Debit Card Form -->
+            <div class="payment-form" id="debit-card-form">
+              <div class="accepted-cards">
+                <span>We Accept:</span>
+                <div class="card-logos">
+                  <div class="card-logo visa">VISA</div>
+                  <div class="card-logo mastercard">MasterCard</div>
+                  <div class="card-logo rupay">RuPay</div>
+                  <div class="card-logo maestro">MAESTRO</div>
+                </div>
+              </div>
+              
+              <label for="debitCardNumber">Debit Card Number</label>
+              <input type="text" id="debitCardNumber" name="debitCardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+              
+              <div class="card-form-row">
+                <div class="card-form-column">
+                  <label for="debitCardName">Cardholder Name</label>
+                  <input type="text" id="debitCardName" name="debitCardName" placeholder="John Doe">
+                </div>
+                <div class="card-form-column small">
+                  <label for="debitExpiryDate">MM/YY</label>
+                  <input type="text" id="debitExpiryDate" name="debitExpiryDate" placeholder="12/28" maxlength="5">
+                </div>
+                <div class="card-form-column small">
+                  <label for="debitCvv">CVV</label>
+                  <input type="text" id="debitCvv" name="debitCvv" placeholder="123" maxlength="4">
+                </div>
+              </div>
+              
+              <label for="debitPin">ATM PIN</label>
+              <input type="password" id="debitPin" name="debitPin" placeholder="Enter your 4-digit ATM PIN" maxlength="4">
+            </div>
+
+            <!-- Net Banking Form -->
+            <div class="payment-form" id="net-banking-form">
+              <label for="bankSelect">Select Your Bank</label>
+              <select id="bankSelect" name="bankSelect">
+                <option value="">Choose your bank</option>
+                <optgroup label="Popular Banks">
+                  <option value="sbi">State Bank of India</option>
+                  <option value="hdfc">HDFC Bank</option>
+                  <option value="icici">ICICI Bank</option>
+                  <option value="axis">Axis Bank</option>
+                  <option value="kotak">Kotak Mahindra Bank</option>
+                  <option value="pnb">Punjab National Bank</option>
+                </optgroup>
+                <optgroup label="Other Banks">
+                  <option value="bob">Bank of Baroda</option>
+                  <option value="canara">Canara Bank</option>
+                  <option value="union">Union Bank of India</option>
+                  <option value="idbi">IDBI Bank</option>
+                  <option value="yes">Yes Bank</option>
+                  <option value="indusind">IndusInd Bank</option>
+                </optgroup>
+              </select>
+              <p class="payment-note">
+                <span class="note-icon">ℹ️</span>
+                You will be redirected to your bank's secure website to complete the payment
+              </p>
+            </div>
+
+            <!-- UPI & Wallets Form -->
+            <div class="payment-form" id="upi-wallets-form">
+              <div class="wallet-options">
+                <div class="wallet-option" data-wallet="paytm">
+                  <div class="wallet-logo paytm-logo">Paytm</div>
+                  <div class="wallet-desc">Pay with Paytm Wallet</div>
+                </div>
+                <div class="wallet-option" data-wallet="phonepe">
+                  <div class="wallet-logo phonepe-logo">PhonePe</div>
+                  <div class="wallet-desc">Pay with PhonePe</div>
+                </div>
+                <div class="wallet-option" data-wallet="googlepay">
+                  <div class="wallet-logo gpay-logo">Google Pay</div>
+                  <div class="wallet-desc">Pay with Google Pay</div>
+                </div>
+                <div class="wallet-option" data-wallet="amazonpay">
+                  <div class="wallet-logo amazon-logo">Amazon Pay</div>
+                  <div class="wallet-desc">Pay with Amazon Pay</div>
+                </div>
+              </div>
+              
+              <div class="upi-section">
+                <h5>Or Pay with UPI ID</h5>
+                <label for="upiId">Enter UPI ID</label>
+                <input type="text" id="upiId" name="upiId" placeholder="yourname@paytm">
+                <p class="payment-note">
+                  <span class="note-icon">ℹ️</span>
+                  Enter your UPI ID to receive payment request
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-summary">
+          <h3>Order Summary</h3>
+          <p id="orderItem">Book × 1</p>
+          <p id="deliveryInfo">Delivery: Standard Delivery (3-5 days)</p>
+          <p id="paymentInfo">Payment: Cash on Delivery</p>
+          <div class="order-total">
+            <span>Total:</span>
+            <span id="totalAmount">Rs 150</span>
+          </div>
+        </div>
+
+        <button type="submit" id="placeOrderBtn">Place Order</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Books of Hope. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Payment method selection
+    document.querySelectorAll('.payment-option').forEach(option => {
+      option.addEventListener('click', function() {
+        // Remove selected class from all options
+        document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+        
+        // Add selected class to clicked option
+        this.classList.add('selected');
+        
+        // Check the radio button
+        const radio = this.querySelector('input[type="radio"]');
+        radio.checked = true;
+        
+        // Show/hide online payment gateway
+        const onlineGateway = document.getElementById('onlinePaymentGateway');
+        const paymentInfo = document.getElementById('paymentInfo');
+        
+        if (radio.value === 'online') {
+          onlineGateway.classList.add('show');
+          updatePaymentInfo();
+        } else {
+          onlineGateway.classList.remove('show');
+          paymentInfo.textContent = 'Payment: Cash on Delivery';
+        }
+      });
+    });
+
+    // Payment tab switching
+    document.querySelectorAll('.payment-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const tabName = this.dataset.tab;
+        
+        // Remove active class from all tabs
+        document.querySelectorAll('.payment-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.payment-form').forEach(f => f.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding form
+        this.classList.add('active');
+        document.getElementById(tabName + '-form').classList.add('active');
+        
+        updatePaymentInfo();
+      });
+    });
+
+    // Wallet selection
+    document.querySelectorAll('.wallet-option').forEach(wallet => {
+      wallet.addEventListener('click', function() {
+        // Remove selected class from all wallets
+        document.querySelectorAll('.wallet-option').forEach(w => w.classList.remove('selected'));
+        
+        // Add selected class to clicked wallet
+        this.classList.add('selected');
+        
+        updatePaymentInfo();
+      });
+    });
+
+    // Update payment info in order summary
+    function updatePaymentInfo() {
+      const paymentInfo = document.getElementById('paymentInfo');
+      const activeTab = document.querySelector('.payment-tab.active');
+      
+      if (activeTab) {
+        const tabName = activeTab.dataset.tab;
+        let paymentText = 'Payment: ';
+        
+        switch(tabName) {
+          case 'credit-card':
+            paymentText += 'Credit Card';
+            break;
+          case 'debit-card':
+            paymentText += 'Debit Card';
+            break;
+          case 'net-banking':
+            paymentText += 'Net Banking';
+            break;
+          case 'upi-wallets':
+            const selectedWallet = document.querySelector('.wallet-option.selected');
+            if (selectedWallet) {
+              const walletName = selectedWallet.querySelector('.wallet-logo').textContent;
+              paymentText += walletName;
+            } else {
+              paymentText += 'UPI/Wallet';
+            }
+            break;
+        }
+        
+        paymentInfo.textContent = paymentText;
+      }
+    }
+
+    // Card number formatting for all card inputs
+    function formatCardNumber(input) {
+      input.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+        let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+        e.target.value = formattedValue;
+      });
+    }
+
+    // Expiry date formatting for all expiry inputs
+    function formatExpiryDate(input) {
+      input.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length >= 2) {
+          value = value.substring(0, 2) + '/' + value.substring(2, 4);
+        }
+        e.target.value = value;
+      });
+    }
+
+    // CVV input restriction
+    function restrictCVV(input) {
+      input.addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
+      });
+    }
+
+    // Apply formatting to all card inputs
+    formatCardNumber(document.getElementById('creditCardNumber'));
+    formatCardNumber(document.getElementById('debitCardNumber'));
+    formatExpiryDate(document.getElementById('creditExpiryDate'));
+    formatExpiryDate(document.getElementById('debitExpiryDate'));
+    restrictCVV(document.getElementById('creditCvv'));
+    restrictCVV(document.getElementById('debitCvv'));
+
+    // ATM PIN restriction
+    document.getElementById('debitPin').addEventListener('input', function(e) {
+      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    });
+
+    // UPI ID validation
+    document.getElementById('upiId').addEventListener('input', function(e) {
+      const value = e.target.value;
+      // Basic UPI ID format validation
+      if (value && !value.includes('@')) {
+        e.target.setCustomValidity('Please enter a valid UPI ID (e.g., yourname@paytm)');
+      } else {
+        e.target.setCustomValidity('');
+      }
+    });
+
+    // Form submission
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+      
+      if (paymentMethod === 'online') {
+        const activeTab = document.querySelector('.payment-tab.active').dataset.tab;
+        
+        // Validate based on selected payment method
+        let isValid = true;
+        let message = '';
+        
+        switch(activeTab) {
+          case 'credit-card':
+            const creditCard = document.getElementById('creditCardNumber').value;
+            const creditName = document.getElementById('creditCardName').value;
+            const creditExpiry = document.getElementById('creditExpiryDate').value;
+            const creditCvv = document.getElementById('creditCvv').value;
+            
+            if (!creditCard || !creditName || !creditExpiry || !creditCvv) {
+              isValid = false;
+              message = 'Please fill in all credit card details.';
+            } else {
+              message = 'Processing your credit card payment... Thank you for your order!';
+            }
+            break;
+            
+          case 'debit-card':
+            const debitCard = document.getElementById('debitCardNumber').value;
+            const debitName = document.getElementById('debitCardName').value;
+            const debitExpiry = document.getElementById('debitExpiryDate').value;
+            const debitCvv = document.getElementById('debitCvv').value;
+            const debitPin = document.getElementById('debitPin').value;
+            
+            if (!debitCard || !debitName || !debitExpiry || !debitCvv || !debitPin) {
+              isValid = false;
+              message = 'Please fill in all debit card details including ATM PIN.';
+            } else {
+              message = 'Processing your debit card payment... Thank you for your order!';
+            }
+            break;
+            
+          case 'net-banking':
+            const selectedBank = document.getElementById('bankSelect').value;
+            
+            if (!selectedBank) {
+              isValid = false;
+              message = 'Please select your bank for net banking.';
+            } else {
+              message = 'Redirecting to your bank for secure payment... Thank you for your order!';
+            }
+            break;
+            
+          case 'upi-wallets':
+            const selectedWallet = document.querySelector('.wallet-option.selected');
+            const upiId = document.getElementById('upiId').value;
+            
+            if (!selectedWallet && !upiId) {
+              isValid = false;
+              message = 'Please select a wallet or enter your UPI ID.';
+            } else if (selectedWallet) {
+              const walletName = selectedWallet.querySelector('.wallet-logo').textContent;
+              message = `Processing payment through ${walletName}... Thank you for your order!`;
+            } else {
+              message = 'Sending payment request to your UPI ID... Thank you for your order!';
+            }
+            break;
+        }
+        
+        if (!isValid) {
+          alert(message);
+          return;
+        }
+        
+        alert(message);
+      } else {
+        alert('Thank you for your order! You can pay cash on delivery.');
+      }
+    });
+
+    // Update order summary when quantity changes
+    document.getElementById('quantity').addEventListener('change', function(e) {
+      const quantity = parseInt(e.target.value);
+      const pricePerBook = 150;
+      const total = quantity * pricePerBook;
+      
+      document.getElementById('orderItem').textContent = `Book × ${quantity}`;
+      document.getElementById('totalAmount').textContent = `Rs ${total}`;
+    });
+
+    // Update delivery method in summary
+    document.getElementById('deliveryMethod').addEventListener('change', function(e) {
+      const deliveryMethod = e.target.options[e.target.selectedIndex].text;
+      document.getElementById('deliveryInfo').textContent = `Delivery: ${deliveryMethod}`;
+    });
+  </script>
+  </script>
+</body>
+</html>

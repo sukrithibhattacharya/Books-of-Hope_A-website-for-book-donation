@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Donated Books | Books of Hope</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #8e24aa;
+      --primary-light: #fdebf3;
+      --primary-dark: #5c007a;
+      --text: #333;
+      --gray: #757575;
+      --light-gray: #f5f5f5;
+      --shadow: rgba(0,0,0,0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--primary-light);
+      color: var(--text);
+    }
+    
+    header {
+      background-color: #fff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px var(--shadow);
+      display: flex;
+      align-items: center;
+    }
+    
+    header h2 {
+      font-family: 'Tinos', serif;
+      color: var(--primary);
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    
+    h1 {
+      font-family: 'Tinos', serif;
+      color: var(--primary);
+      text-align: center;
+      margin: 2rem 0 1.5rem;
+      font-size: 2.5rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .search-filter {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0 2rem 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .search-filter input,
+    .search-filter select {
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      min-width: 200px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .search-filter input:focus,
+    .search-filter select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 3px 8px rgba(138, 36, 170, 0.15);
+    }
+    
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 1rem 2rem 3rem;
+    }
+    
+    .book-card {
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+    }
+    
+    .book-image {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .book-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .book-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .book-info {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    
+    .book-card h3 {
+      margin: 0 0 0.5rem;
+      color: var(--primary-dark);
+      font-family: 'Tinos', serif;
+      font-size: 1.3rem;
+    }
+    
+    .book-author {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .book-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    .book-meta span {
+      background-color: var(--light-gray);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    
+    .button-container {
+      margin-top: auto;
+    }
+    
+    .book-card button {
+      width: 100%;
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    
+    .book-card button:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .book-card button:disabled {
+      background-color: var(--gray);
+      cursor: not-allowed;
+    }
+    
+    .status-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 1;
+    }
+    
+    .status-available {
+      background-color: #c8e6c9;
+      color: #2e7d32;
+    }
+    
+    .status-unavailable {
+      background-color: #ffcdd2;
+      color: #c62828;
+    }
+    
+    .no-results {
+      text-align: center;
+      grid-column: 1 / -1;
+      padding: 2rem;
+      font-size: 1.1rem;
+      color: var(--gray);
+    }
+    
+    .loading {
+      text-align: center;
+      grid-column: 1 / -1;
+      padding: 3rem;
+    }
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(142, 36, 170, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    @media (max-width: 768px) {
+      .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.5rem;
+        padding: 1rem;
+      }
+      
+      .search-filter {
+        padding: 0 1rem 1rem;
+      }
+      
+      .search-filter input,
+      .search-filter select {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2 class="logo">Books of Hope</h2>
+  </header>
+
+  <div class="container">
+    <h1>Browse Donated Books</h1>
+
+    <div class="search-filter">
+      <input type="text" id="searchInput" placeholder="Search by title, author...">
+      <select id="genreSelect">
+        <option value="">All Genres</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Non-fiction">Non-fiction</option>
+        <option value="Children">Children</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Biography">Biography</option>
+      </select>
+      <select id="ageSelect">
+        <option value="">All Age Groups</option>
+        <option value="Kids">Kids</option>
+        <option value="Teens">Teens</option>
+        <option value="Adults">Adults</option>
+      </select>
+    </div>
+
+    <div class="book-grid" id="bookGrid">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let booksData = [];
+    
+    // For demo purposes, create sample data in case API fails
+    const sampleBooks = [
+      {
+        id: 1,
+        title: "The Silent Patient",
+        author: "Alex Michaelides",
+        genre: "Mystery",
+        ageGroup: "Adults",
+        status: "Available",
+        coverUrl: "https://via.placeholder.com/300x400?text=The+Silent+Patient"
+      },
+      {
+        id: 2,
+        title: "Harry Potter and the Philosopher's Stone",
+        author: "J.K. Rowling",
+        genre: "Fantasy",
+        ageGroup: "Teens",
+        status: "Available", 
+        coverUrl: "https://via.placeholder.com/300x400?text=Harry+Potter"
+      },
+      {
+        id: 3,
+        title: "To Kill a Mockingbird",
+        author: "Harper Lee",
+        genre: "Fiction",
+        ageGroup: "Adults",
+        status: "Not Available",
+        coverUrl: "https://via.placeholder.com/300x400?text=To+Kill+a+Mockingbird"
+      },
+      {
+        id: 4,
+        title: "The Very Hungry Caterpillar",
+        author: "Eric Carle",
+        genre: "Children",
+        ageGroup: "Kids",
+        status: "Available",
+        coverUrl: "https://via.placeholder.com/300x400?text=The+Very+Hungry+Caterpillar"
+      }
+    ];
+
+    async function loadBooks() {
+      try {
+        const response = await fetch('/api/books');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        booksData = await response.json();
+        
+        // Check if the data is valid
+        if (!Array.isArray(booksData) || booksData.length === 0) {
+          console.warn("API returned no books or invalid data format, using sample data instead");
+          booksData = sampleBooks;
+        }
+        
+        displayBooks(booksData);
+      } catch (err) {
+        console.error("Error loading books:", err);
+        console.log("Using sample data instead");
+        booksData = sampleBooks;
+        displayBooks(booksData);
+      }
+    }
+
+    function displayBooks(books) {
+      const grid = document.getElementById('bookGrid');
+      grid.innerHTML = '';
+      
+      if (books.length === 0) {
+        grid.innerHTML = '<div class="no-results">No books found matching your search criteria.</div>';
+        return;
+      }
+
+      books.forEach(book => {
+        // Handle potentially undefined values
+        const title = book.title || 'Unknown Title';
+        const author = book.author || 'Unknown Author';
+        const genre = book.genre || 'Uncategorized';
+        const status = book.status || 'Unknown';
+        const coverUrl = book.coverUrl || `https://via.placeholder.com/300x400?text=${encodeURIComponent(title)}`;
+        
+        const isAvailable = status.toLowerCase() === 'available';
+        
+        const card = document.createElement('div');
+        card.className = 'book-card';
+        
+        card.innerHTML = `
+          <div class="book-image">
+            <div class="status-badge ${isAvailable ? 'status-available' : 'status-unavailable'}">
+              ${status}
+            </div>
+            <img src="${coverUrl}" alt="${title} Cover">
+          </div>
+          <div class="book-info">
+            <h3>${title}</h3>
+            <div class="book-author">By ${author}</div>
+            <div class="book-meta">
+              <span>${genre}</span>
+              <span>${book.ageGroup || 'All Ages'}</span>
+            </div>
+            <div class="button-container">
+              ${isAvailable ? 
+                `<a href="order.html?bookId=${book.id || ''}"><button>Order Book</button></a>` : 
+                `<button disabled>Not Available</button>`}
+            </div>
+          </div>
+        `;
+        
+        grid.appendChild(card);
+      });
+    }
+
+    function filterBooks() {
+      const searchText = document.getElementById('searchInput').value.toLowerCase();
+      const genre = document.getElementById('genreSelect').value;
+      const age = document.getElementById('ageSelect').value;
+
+      const filtered = booksData.filter(book => {
+        const titleMatch = (book.title || '').toLowerCase().includes(searchText);
+        const authorMatch = (book.author || '').toLowerCase().includes(searchText);
+        const genreMatch = genre === '' || book.genre === genre;
+        const ageMatch = age === '' || book.ageGroup === age;
+        
+        return (titleMatch || authorMatch) && genreMatch && ageMatch;
+      });
+
+      displayBooks(filtered);
+    }
+
+    // Add event listeners
+    document.getElementById('searchInput').addEventListener('input', filterBooks);
+    document.getElementById('genreSelect').addEventListener('change', filterBooks);
+    document.getElementById('ageSelect').addEventListener('change', filterBooks);
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', loadBooks);
+  </script>
+</body>
+</html>

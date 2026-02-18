@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Student Registration</h2>
+<form id="register-form">
+      <label for="stu-name">Full Name:</label>
+      <input type="text" id="stu-name" name="stu-name" required>
+
+      <label for="stu-id">Student ID:</label>
+      <input type="text" id="stu-id" name="stu-id" required>
+
+      <label for="stu-email">Email:</label>
+      <input type="email" id="stu-email" name="stu-email" required>
+
+      <label for="stu-phone">Phone Number:</label>
+      <input type="tel" id="stu-phone" name="stu-phone" required>
+
+      <label for="stu-course">Course:</label>
+      <input type="text" id="stu-course" name="stu-course" required>
+
+      <label for="username">Set Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <button type="submit" class="cta-btn">Submit</button>
+    </form>
+  </div>
+  <script>
+  document.getElementById('register-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    if (password !== confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+
+    // Simulate successful registration
+    alert('Registration successful!');
+    window.location.href = 'registration-success.html';
+  });
+</script>
+</body>
+</html>

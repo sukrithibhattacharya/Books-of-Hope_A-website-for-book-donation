@@ -1,0 +1,1120 @@
+/* General Styles & Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #F6DFEA;
+    font-family: 'Tinos', serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Header & Navigation */
+  
+  header {
+    background: linear-gradient(90deg, #F8E8F2, #ffffff);
+    padding: 20px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Logo */
+  
+  .logo a {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    font-family: 'Tinos', serif;
+    letter-spacing: 2px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .logo a:hover {
+    color: #A888B5;
+  }
+  
+  /* Navigation Links */
+  
+  .nav-links {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .nav-links li {
+    list-style: none;
+  }
+  
+  .nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: 'Tinos', serif;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #441752;
+  }
+  
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background-color: #441752;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-links a:hover::after {
+    transform: scaleX(1);
+  }
+  
+  /* Donate Now Button (in Nav) - Slightly Raised */
+  
+  .button-container {
+    display: flex;
+    gap: 10px; /* Controls the space between the buttons */
+    justify-content: center; /* Centers the buttons horizontally */
+}
+
+.cta-btn {
+  background: linear-gradient(90deg, #A888B5, #EFB6C8);
+  color: #fff;
+  padding: 10px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  top: -10px;
+}
+
+.cta-btn:hover {
+  background: #fcfbfc;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+  
+  /* Mobile Menu */
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      align-items: center;
+      background: linear-gradient(90deg, #F8E8F2, #ffffff);
+      position: absolute;
+      top: 70px;
+      left: 0;
+      padding: 20px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  
+    .menu-icon {
+      display: block;
+      cursor: pointer;
+      font-size: 2rem;
+      color: #333;
+    }
+  }
+  
+  /* Hero Section */
+  
+  /* Hero Section */
+
+.hero-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  margin-top: 80px; /* account for fixed header */
+}
+
+/* Add a semi-transparent overlay */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Darken the background */
+  z-index: 0;
+}
+
+/* Background Video (if used) */
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+/* Tagline using a cursive font (Meow Script) */
+.hero-content h1 {
+  font-family: 'Meow Script', cursive;
+  font-size: 8rem; /* Enlarge the font */
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow for better contrast */
+}
+
+/* Subheading with Tinos */
+.hero-content p {
+  font-family: 'Tinos', serif;
+  font-size: 1.5rem; /* Increased font size */
+  max-width: 600px;
+  margin: 0 auto;
+  color: #f4eeee;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Add shadow */
+}
+
+/* CTA Button in Hero Section */
+.hero-section .cta-btn {
+  background: linear-gradient(90deg, #A888B5, #EFB6C8);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.hero-section .cta-btn:hover {
+  background: #ddbbea;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+  
+  /* How it Works Section */
+  
+/* About Us Section */
+/* About Us Section */
+/* About Us Section */
+.about-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #F7E1EC; /* Light background for contrast */
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.intro h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.intro p {
+  font-size: 1.2rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-btn {
+  background: linear-gradient(90deg, #A888B5, #EFB6C8); color: #fff; padding: 10px 20px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold; transition: background 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; display: inline-block; margin-top: 20px;
+}
+
+.cta-btn:hover {
+  background: #ddbbea;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.story-mission-vision {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 40px;
+  align-items: start;
+}
+
+.story img {
+  width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.story-content {
+  margin-top: 20px;
+}
+
+.story h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.story p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.mission-vision {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.mission-card, .vision-card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fef3f3; /* Soft background color */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mission-card h4, .vision-card h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.mission-card p, .vision-card p {
+  font-size: 1.1rem;
+  color: #666;
+}
+.mission-card:hover, .vision-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+
+
+
+/* How It Works Section */
+.how-it-works-section {
+  padding: 80px 20px;
+  background: #F6DFEA; /* Matching gradient */
+  text-align: center;
+}
+
+.how-it-works-section h2 {
+  font-size: 3rem;
+  color: #441752;
+  margin-bottom: 60px;
+  font-family: 'Tinos', serif;
+}
+
+.image-wrapper img {
+  width: 800px; /* Adjust size as needed */
+  transition: transform 0.5s ease-in-out;
+}
+
+.image-wrapper img:hover {
+  transform: scale(1.05) rotate(3deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .how-it-works-section {
+      padding: 40px 10px;
+  }
+  .image-wrapper img {
+      width: 250px;
+  }
+}
+
+
+
+/* ========================
+   STEPS SECTION
+   ======================== */
+   .steps {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background: #F6DFEA;
+    padding: 20px 0;
+    position: relative;
+    width: 100%;
+  }
+  
+  .step {
+    width: 200px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    margin: 10px;
+  }
+  
+  .step img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .step h3 {
+    margin-bottom: 8px;
+    color: #441752;
+  }
+  
+  .step p {
+    color: #333;
+  }
+  
+  .step-1 {
+    margin-left: 0%;
+  }
+  
+  .step-2 {
+    margin-left: 10%;
+  }
+  
+  .step-3 {
+    margin-left: 10%;
+  }
+  
+/* ========================
+   DONATION SECTION
+   ======================== */
+.donation-section {
+    background: #F6DFEA;
+    padding: 80px 0;
+    text-align: center;
+    color: #333;
+}
+
+.donation-form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.donation-form-container h2 {
+    font-size: 2.5rem;
+    color: #441752;
+    margin-bottom: 20px;
+}
+
+.donation-form-container p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #441752;
+}
+
+.donation-form label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #441752;
+    display: block;
+    text-align: left;
+}
+
+.donation-form input,
+.donation-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #F1E3F3;
+    transition: border-color 0.3s ease;
+}
+
+.donation-form input:focus,
+.donation-form textarea:focus {
+    border-color: #A888B5;
+}
+
+.donation-form input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #F1E3F3;
+}
+
+.donation-form button {
+  background: linear-gradient(90deg, #A888B5, #EFB6C8);
+  color: #fff;
+  padding: 10px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  top: -10px;
+}
+
+.donation-form button:hover {
+    background: linear-gradient(90deg, #8174A0, #441752);
+    transform: translateY(-3px);
+}
+
+/* ========================
+   EVENTS & BLOG
+   ======================== */
+/* ========================
+   BLOG SECTION STYLES
+   ======================== */
+/* ========================
+   BLOG SECTION STYLES
+   ======================== */
+   .blog-section {
+    padding: 60px 20px;
+    background-color: linear-gradient(90deg, #A888B5, #EFB6C8); /* Light background for contrast */
+}
+
+.blog-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #441752; /* Match heading color */
+    margin-bottom: 40px;
+    font-family: 'Tinos', serif;
+}
+
+.blog-posts {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Makes sure the posts wrap in smaller screens */
+}
+
+.blog-post {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+    width: 350px;
+    text-align: center; /* Center-align content */
+}
+
+.blog-post:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.blog-post-image {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+.blog-post-content {
+    padding: 20px;
+}
+
+.blog-post h3 {
+    font-size: 1.5rem;
+    color: #441752;
+    margin-bottom: 15px;
+    font-family: 'Tinos', serif;
+}
+
+.blog-post p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    padding: 0 10px;
+}
+
+.blog-link {
+  display: inline-block;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #A888B5, #EFB6C8); /* Apply the gradient */
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  box-shadow: 0 5px 15px rgba(127, 87, 170, 0.4); /* Adds soft shadow */
+}
+
+.blog-link:hover {
+  background-color: #441752; /* Darken on hover */
+  box-shadow: 0 8px 20px rgba(127, 87, 170, 0.5); /* Enhance shadow on hover */
+}
+
+/* For responsiveness */
+@media (max-width: 768px) {
+    .blog-posts {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+/* ========================
+   TESTIMONIALS
+   ======================== */
+  /* What People Say Section */
+
+.what-people-say {
+  background-image: url("background-image.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 50px 0;
+  text-align: center;
+  font-size: 24px;
+}
+
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.testimonial img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.testimonial p {
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.testimonial h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.testimonial .rating {
+  font-size: 18px;
+  color: #FFD700;
+  margin-bottom: 20px;
+}
+
+.testimonial .rating span {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+/* Responsive design */
+
+@media (max-width: 768px) {
+  .testimonials {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================
+   FOOTER
+   ======================== */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+footer .footer-info {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+footer .footer-logo {
+    flex: 1;
+    color: #F6DFEA;
+    text-align: left;
+}
+
+footer .footer-logo h3 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+footer .footer-logo p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+footer nav ul {
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+footer nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+footer nav ul li a:hover {
+    color: #F6DFEA;
+}
+
+footer .social-links {
+    flex: 1;
+    text-align: right;
+}
+
+footer .social-icon {
+    margin-left: 15px;
+    font-size: 1.5rem;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+footer .social-icon:hover {
+    color: #F6DFEA;
+}
+
+footer .footer-copyright {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #F6DFEA;
+}
+
+/* ========================
+   ADDITIONAL CTA (if needed)
+   ======================== */
+.cta-btn {
+    background: linear-gradient(90deg, #A888B5, #EFB6C8);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.cta-btn:hover {
+  background: #fcfbfc;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+/* Fade-in transition for the entire website */
+body {
+    animation: fadeIn 2s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Slide-in transition for the header */
+  header {
+    animation: slideIn 1s;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Fade-in transition for the sections */
+  section {
+    animation: fadeIn 1s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Slide-in transition for the footer */
+  footer {
+    animation: slideIn 1s;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Transition for the navigation links */
+  nav a {
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #441752;
+  }
+  
+  /* Transition for the buttons */
+  button {
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #441752;
+  }
+  
+  /* Transition for the images */
+  img {
+    transition: transform 0.3s ease;
+  }
+  
+  img:hover {
+    transform: scale(1.1);
+  }
+    /* Featured campaign */
+   /* Featured Campaigns Section */
+   .featured-campaigns {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.featured-campaigns h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.featured-campaigns p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.campaign-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.campaign {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.campaign img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.campaign h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.campaign p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #e9ecef;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #C197D2;
+    border-radius: 5px;
+}
+
+.cta-btn {
+  background: linear-gradient(90deg, #A888B5, #EFB6C8);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.cta-btn:hover {
+  background: #fcfbfc;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* ===============================
+   Featured Campaign Donation Form
+   =============================== */
+
+/* Container & Section Styling */
+#donate {
+  padding: 80px 0;
+  background: #F6DFEA;
+  text-align: center;
+  color: #333;
+}
+
+/* Form Container (matches your normal donation form style) */
+.donation-form-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Heading & Description */
+.donation-form-container h2 {
+  font-size: 2.5rem;
+  color: #441752;
+  margin-bottom: 20px;
+  font-family: 'Tinos', serif;
+}
+
+.donation-form-container p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #441752;
+  font-family: 'Tinos', serif;
+}
+
+/* Form Labels */
+.donation-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #441752;
+  text-align: left;
+}
+
+/* Form Inputs & Textareas */
+.donation-form input,
+.donation-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #F1E3F3;
+  transition: border-color 0.3s ease;
+}
+
+.donation-form input:focus,
+.donation-form textarea:focus {
+  border-color: #A888B5;
+}
+
+.donation-form input[type="file"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: #F1E3F3;
+}
+
+/* Form Button Styling */
+.donation-form button {
+  background: linear-gradient(90deg, #A888B5, #EFB6C8);
+  color: #fff;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s;
+}
+
+.donation-form button:hover {
+  background: #fcfbfc;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+/* Progress Bar Container */
+#progressContainer {
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* Progress Bar Styling */
+#progressBar {
+  width: 100%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+#progressBar::-webkit-progress-bar {
+  background-color: #ddd;
+  border-radius: 10px;
+}
+
+#progressBar::-webkit-progress-value {
+  background-color: #A888B5;
+  border-radius: 10px;
+}
+
+/* Status Message */
+#status {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #441752;
+  font-family: 'Tinos', serif;
+}
+
+body {
+  cursor: none; /* Hide default cursor */
+}
+
+/* Style for the custom circular cursor with a glowing effect */
+.custom-cursor {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(255, 105, 180, 0.7); /* Light pink (Hot Pink) with transparency */
+  position: absolute;
+  pointer-events: none; /* Prevent cursor interactions */
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease-in-out;
+  
+  /* Glowing effect */
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.8), 0 0 30px rgba(255, 105, 180, 0.5);
+  animation: shine 2s infinite alternate; /* Adding shine animation */
+}
+
+/* Keyframes for the shining effect */
+@keyframes shine {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.6), 0 0 20px rgba(255, 105, 180, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.8), 0 0 40px rgba(255, 105, 180, 0.6);
+  }
+}
+
+
+
+  
+  

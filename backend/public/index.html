@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookofHopes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Meow+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tinos&display=swap" rel="stylesheet">
+    <script src="campaigns.js"></script>
+    <script src="header.js" defer></script>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    
+
+</head>
+
+<body>
+    <div class="custom-cursor"></div> <script src="cursor.js"></script>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#">BooksofHope</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#donate">Donate</a></li>
+                <li><a href="browse.html">Browse</a></li>
+             
+            </ul>
+            <div class="button-container">
+                <a href="register.html" class="cta-btn">Register</a>
+                <a href="login.html" class="cta-btn">Login</a>
+              </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <video autoplay muted loop playsinline class="background-video">
+            <source src="https://cdn.pixabay.com/video/2023/10/15/185092-874643408_tiny.mp4" type="video/mp4">
+            <!-- Add multiple sources for compatibility -->
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Give a book, share a dream</h1>
+            <p>Donate your old books and make a difference.</p>
+            <a href="#donate" class="cta-btn donate-btn">Donate Now</a>
+        </div>
+    </section>
+    
+
+  <!-- About Us Section -->
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="intro">
+            <h1>Empower Your World Through Books</h1>
+            <p>Join us in making a difference through books that change lives, promoting literacy, and empowering knowledge globally.</p>
+            <a href="register.html" class="cta-btn">Get Involved</a>
+        </div>
+        <div class="story-mission-vision">
+            <!-- Our Story -->
+            <div class="story">
+                <video src="https://videos.pexels.com/video-files/2795307/2795307-sd_640_360_25fps.mp4" autoplay muted loop></video>
+
+                <div class="story-content">
+                    <h3>Our Story</h3>
+                    <p>
+                        At BooksForHope, we believe in the transformative power of books. We connect donors with those eager to learn, helping to spread knowledge and foster a culture of reading. Together, we can create a brighter future by providing access to education and literacy.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Our Mission -->
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <h4>Our Mission</h4>
+                    <p>To provide access to books that inspire, educate, and change lives, empowering people around the world to reach their full potential.</p>
+                </div>
+
+                <!-- Our Vision -->
+                <div class="vision-card">
+                    <h4>Our Vision</h4>
+                    <p>To cultivate a global community where books are accessible to all, fostering education, knowledge, and lifelong learning for future generations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  
+  <!-- How It Works Section -->
+ <!-- How It Works Section -->
+ <section id="how-it-works" class="how-it-works-section">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="image-wrapper">
+        <img src="/images/image.png" alt="How It Works Image">
+      </div>
+    </div>
+</section>
+  
+  
+
+    <!-- Book Donation Section -->
+    <section id="donate" class="donation-section">
+      <div class="donation-form-container">
+        <h2>Donate Your Books</h2>
+        <p>Fill out the form below to donate your books and help spread the joy of reading.</p>
+        
+        <form class="donation-form" action="/donate-book" method="POST" enctype="multipart/form-data">
+          <!-- Donor Information -->
+          <div class="form-section">
+            <h3>Your Information</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone Number (Optional):</label>
+              <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+            </div>
+          </div>
+          
+          <!-- Book Information -->
+          <div class="form-section">
+            <h3>Book Details</h3>
+            
+            <div class="form-group">
+              <label for="bookTitle">Book Title:</label>
+              <input type="text" id="bookTitle" name="bookTitle" placeholder="Enter book title" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" placeholder="Enter author name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="genre">Genre:</label>
+                <select id="genre" name="genre" required>
+                  <option value="">Select Genre</option>
+                  <option value="Fiction">Fiction</option>
+                  <option value="Non-fiction">Non-fiction</option>
+                  <option value="Children">Children</option>
+                  <option value="Fantasy">Fantasy</option>
+                  <option value="Science Fiction">Science Fiction</option>
+                  <option value="Mystery">Mystery</option>
+                  <option value="Biography">Biography</option>
+                  <option value="Self-Help">Self-Help</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ageGroup">Age Group:</label>
+                <select id="ageGroup" name="ageGroup" required>
+                  <option value="">Select Age Group</option>
+                  <option value="Kids">Kids (0-12)</option>
+                  <option value="Teens">Teens (13-17)</option>
+                  <option value="Adults">Adults (18+)</option>
+                  <option value="All Ages">All Ages</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="condition">Book Condition:</label>
+                <select id="condition" name="condition" required>
+                  <option value="">Select Condition</option>
+                  <option value="New">New</option>
+                  <option value="Like New">Like New</option>
+                  <option value="Good">Good</option>
+                  <option value="Fair">Fair</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="description">Book Description (Optional):</label>
+              <textarea id="description" name="description" placeholder="Brief description of the book"></textarea>
+            </div>
+          </div>
+          
+          <!-- File Upload -->
+          <div class="form-section">
+            <h3>Book Cover Image</h3>
+            <div class="upload-container">
+              <div class="cover-preview" id="coverPreview">
+                <div class="preview-placeholder">Cover preview will appear here</div>
+              </div>
+              
+              <div class="upload-input">
+                <label for="coverImage">Upload Book Cover Image:</label>
+                <input type="file" id="coverImage" name="coverImage" accept="image/jpeg, image/png, image/gif" onchange="previewImage(this)">
+                <p class="help-text">Please upload an image of the book cover (JPEG, PNG or GIF)</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group form-checkbox">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I confirm this is my book to donate and all information provided is accurate</label>
+          </div>
+          
+          <button type="submit" class="cta-btn donate-btn">Submit Donation</button>
+        </form>
+      </div>
+    </section>
+    
+    <style>
+      .donation-section {
+        padding: 4rem 2rem;
+        background-color: #fdebf3;
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      .donation-form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 16px;
+        padding: 2.5rem;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      }
+      
+      .donation-form-container h2 {
+        color: #6a1b9a;
+        text-align: center;
+        font-family: 'Tinos', serif;
+        font-size: 2.2rem;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+      }
+      
+      .donation-form-container p {
+        text-align: center;
+        color: #666;
+        margin-bottom: 2rem;
+      }
+      
+      .form-section {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .form-section h3 {
+        color: #8e24aa;
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
+        font-weight: 500;
+      }
+      
+      .form-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      
+      .form-group {
+        flex: 1;
+        margin-bottom: 1rem;
+      }
+      
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #444;
+      }
+      
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.95rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #8e24aa;
+        box-shadow: 0 0 0 3px rgba(142, 36, 170, 0.1);
+      }
+      
+      .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+      
+      .form-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .form-checkbox input {
+        margin-top: 0.3rem;
+      }
+      
+    
+      
+      .upload-container {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+      }
+      
+      .cover-preview {
+        flex: 0 0 150px;
+        height: 200px;
+        border: 2px dashed #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f9f9f9;
+      }
+      
+      .cover-preview img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+      
+      .preview-placeholder {
+        color: #999;
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.85rem;
+      }
+      
+      .upload-input {
+        flex: 1;
+      }
+      
+      .help-text {
+        font-size: 0.85rem;
+        color: #777;
+        margin-top: 0.5rem;
+      }
+      
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .donation-form-container {
+          padding: 1.5rem;
+        }
+        
+        .form-row {
+          flex-direction: column;
+          gap: 0;
+        }
+        
+        .upload-container {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .cover-preview {
+          flex: 0 0 auto;
+          width: 100%;
+          max-width: 250px;
+          margin: 0 auto;
+        }
+      }
+    </style>
+    
+    <script>
+      function previewImage(input) {
+        const preview = document.getElementById('coverPreview');
+        
+        if (input.files && input.files[0]) {
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+            preview.innerHTML = `<img src="${e.target.result}" alt="Book Cover Preview">`;
+          }
+          
+          reader.readAsDataURL(input.files[0]);
+        } else {
+          preview.innerHTML = `<div class="preview-placeholder">Cover preview will appear here</div>`;
+        }
+      }
+    </script>
+<!-- Featured Campaigns Section -->
+<section id="featured-campaigns" class="featured-campaigns">
+    <h2>Explore Campaigns</h2>
+    <p>Donate to any of these amazing campaigns today!</p>
+    <div class="campaign-container">
+
+        <!-- Campaign 1 -->
+        <div class="campaign" data-id="1">
+            <img src="https://donateabook.org.in/wp-content/uploads/2025/02/PHOTO-2025-02-11-20-30-57-1-600x500.jpg" alt="Campaign 1 Image">
+            <h3>Pages of Hope: A Library for Displaced Children in Churachandpur</h3>
+            <p class="received-books"><strong>Received:</strong> 100 Books, 50%</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 50%;"></div>
+            </div>
+            <button class="cta-btn" onclick="window.location.href='featured_donation.html?campaignId=1'">Donate Books</button>
+
+        </div>
+
+        <!-- Campaign 2 -->
+        <div class="campaign" data-id="2">
+            <img src="https://donateabook.org.in/wp-content/uploads/2024/11/IMG-20240402-WA0006-600x500.jpg" alt="Campaign 2 Image">
+            <h3>Empowering Minds: Building a Learning Center for Women in Rural Areas</h3>
+            <p class="received-books"><strong>Received:</strong> 80 Books, 40%</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 40%;"></div>
+            </div>
+            <button class="cta-btn" onclick="window.location.href='featured_donation.html?campaignId=2'">Donate Books</button>
+
+        </div>
+
+        <!-- Campaign 3 -->
+        <div class="campaign" data-id="3">
+            <img src="https://donateabook.org.in/wp-content/uploads/2024/12/IMG-20230923-WA0078-600x500.jpg" alt="Campaign 3 Image">
+            <h3>Green Reads: An Eco-Friendly Book Drive for Sustainable Education</h3>
+            <p class="received-books"><strong>Received:</strong> 20 Books, 10%</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 10%;"></div>
+            </div>
+            <button class="cta-btn" onclick="window.location.href='featured_donation.html?campaignId=3'">Donate Books</button>
+
+        </div>
+
+        <!-- Additional Campaigns (hidden by default) -->
+        <div class="campaign hidden" data-id="4">
+            <img src="https://donateabook.org.in/wp-content/uploads/2025/01/0F9A3074-600x500.jpg" alt="Campaign 4 Image">
+            <h3>Hope Through Pages: Books for Underprivileged Students</h3>
+            <p class="received-books"><strong>Received:</strong> 0 Books, 0%</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 0%;"></div>
+            </div>
+            <button class="cta-btn" onclick="window.location.href='featured_donation.html?campaignId=4'">Donate Books</button>
+
+        </div>
+
+        <div class="campaign hidden" data-id="5">
+            <img src="https://donateabook.org.in/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-11-at-15.36.13-1-600x500.jpeg" alt="Campaign 5 Image">
+            <h3>Community of Readers: Books for Low-Income Neighborhoods</h3>
+            <p class="received-books"><strong>Received:</strong> 0 Books, 0%</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 0%;"></div>
+            </div>
+            <button class="cta-btn" onclick="window.location.href='featured_donation.html?campaignId=5'">Donate Books</button>
+
+        </div>
+    </div>
+
+    <!-- See More Button -->
+    <button id="see-more-btn" class="cta-btn" onclick="toggleCampaigns()">See More</button>
+</section>
+
+<script>
+    const campaigns = [
+        { id: 1, booksReceived: 100, progress: 50, target: 200 },
+        { id: 2, booksReceived: 80, progress: 40, target: 200 },
+        { id: 3, booksReceived: 20, progress: 10, target: 200 },
+        { id: 4, booksReceived: 0, progress: 0, target: 200 },
+        { id: 5, booksReceived: 0, progress: 0, target: 200 }
+    ];
+
+    // Function to update the progress bar and books received for a campaign
+    function updateCampaignProgress(campaignId, donatedBooks) {
+        const campaign = campaigns.find(c => c.id === campaignId);
+        
+        if (campaign) {
+            campaign.booksReceived += donatedBooks;
+            campaign.progress = (campaign.booksReceived / campaign.target) * 100;
+
+            const campaignElement = document.querySelector(`.campaign[data-id="${campaignId}"]`);
+            if (campaignElement) {
+                const receivedText = campaignElement.querySelector('.received-books');
+                receivedText.innerHTML = `<strong>Received:</strong> ${campaign.booksReceived} Books, ${Math.round(campaign.progress)}%`;
+
+                const progressBar = campaignElement.querySelector('.progress');
+                progressBar.style.width = `${campaign.progress}%`;
+            }
+        }
+    }
+
+    // Function to handle the form submission (mock donation flow)
+    function donateBooks(campaignId) {
+        const donatedBooks = parseInt(prompt("Enter the number of books you wish to donate:"));
+        
+        if (!isNaN(donatedBooks) && donatedBooks > 0) {
+            updateCampaignProgress(campaignId, donatedBooks);
+            alert(`Thank you for donating ${donatedBooks} books to Campaign ${campaignId}!`);
+        } else {
+            alert("Please enter a valid number of books.");
+        }
+    }
+
+    function toggleCampaigns() {
+        const hiddenCampaigns = document.querySelectorAll('.campaign.hidden');
+        const seeMoreBtn = document.getElementById('see-more-btn');
+
+        hiddenCampaigns.forEach(campaign => {
+            campaign.style.display = campaign.style.display === "block" ? "none" : "block";
+        });
+
+        seeMoreBtn.innerText = seeMoreBtn.innerText === 'See More' ? 'See Less' : 'See More';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const hiddenCampaigns = document.querySelectorAll('.campaign.hidden');
+        hiddenCampaigns.forEach(campaign => {
+            campaign.style.display = "none";
+        });
+    });
+</script>
+
+
+    
+    
+    
+
+    
+
+    <!-- Testimonials Section -->
+    <section class="what-people-say">
+        <h2>What People Say</h2><br>
+        <div class="testimonials">
+          <div class="testimonial">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8Mg%3D%3D" alt="Testimonial 1">
+            <p>"I've been using this service for a few months now and I'm blown away by the quality and professionalism. Highly recommend!"</p>
+            <h3>John Doe</h3>
+            <div class="rating">
+              <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              5/5 stars
+            </div>
+          </div>
+          <div class="testimonial">
+            <img src="https://images.unsplash.com/photo-1507206130118-b5907f817163?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fHByb2ZpbGUlMjBwaWN8ZW58MHx8MHx8fDI%3D" alt="Testimonial 2">
+            <p>"I was skeptical at first, but the results have been amazing. The team is knowledgeable and friendly, and the prices are very competitive."</p>
+            <h3>Jane Smith</h3>
+            <div class="rating">
+              <span>&#9733;&#9733;&#9733;&#9733;</span>
+              4/5 stars
+            </div>
+          </div>
+          <div class="testimonial">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjZ8fHByb2ZpbGUlMjBwaWN8ZW58MHx8MHx8fDI%3D" alt="Testimonial 3">
+            <p>"I've tried several similar services in the past, but this one is by far the best. The quality is top-notch and the customer service is exceptional."</p>
+            <h3>Bob Johnson</h3>
+            <div class="rating">
+              <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              5/5 stars
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- Blog Section -->
+<!-- Blog Section -->
+<section id="blog" class="blog-section">
+    <div class="container">
+        <h2>Our Blog</h2>
+        <div class="blog-posts">
+            <article class="blog-post">
+                <div class="blog-post-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX0rgulqtuBOW-DvlhqEjFf9A9LuT4GN9Meg&s');"></div>
+                <div class="blog-post-content">
+                    <h3>How Donating Books Can Change Lives</h3>
+                    <p>Books are powerful tools for education and change.</p>
+                    <a href="#" class="blog-link">Read More</a>
+                </div>
+            </article>
+            <article class="blog-post">
+                <div class="blog-post-image" style="background-image: url('https://m.media-amazon.com/images/I/514MuUxLNrL._AC_UF1000,1000_QL80_.jpg');"></div>
+                <div class="blog-post-content">
+                    <h3>Top 10 Books to Donate to students </h3>
+                    <p>Not sure what books to donate? Here are the top 10 books</p>
+                    <a href="#" class="blog-link">Read More</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-info">
+            <div class="footer-logo">
+                <h3>BooksofHope</h3>
+                <p>Spreading Knowledge, One Book at a Time</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#donate">Donate</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2025 BooksofHope. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Books of Hope Chatbot</title>
+      <style>
+        /* Chatbot Styling */
+        .chatbot-container {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 1000;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .chat-button {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background-color: #a55eea;
+          color: white;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.3s ease;
+        }
+        
+        .chat-button:hover {
+          background-color: #8e44ad;
+          transform: scale(1.05);
+        }
+        
+        .chat-icon {
+          font-size: 24px;
+        }
+        
+        .chat-box {
+          position: absolute;
+          bottom: 80px;
+          right: 0;
+          width: 320px;
+          height: 450px;
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          display: none;
+          flex-direction: column;
+          overflow: hidden;
+        }
+        
+        .chat-header {
+          background-color: #a55eea;
+          color: white;
+          padding: 12px 16px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        
+        .chat-header h3 {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 600;
+        }
+        
+        .chat-header button {
+          background: none;
+          border: none;
+          color: white;
+          font-size: 20px;
+          cursor: pointer;
+        }
+        
+        .chat-messages {
+          flex-grow: 1;
+          padding: 16px;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          background-color: #f8f5fa;
+        }
+        
+        .message {
+          max-width: 80%;
+          padding: 10px 14px;
+          margin-bottom: 10px;
+          border-radius: 18px;
+          line-height: 1.4;
+          font-size: 14px;
+          animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message.bot {
+          align-self: flex-start;
+          background-color: #f1f0f0;
+          border-bottom-left-radius: 5px;
+        }
+        
+        .message.user {
+          align-self: flex-end;
+          background-color: #e9d5ff;
+          color: #111;
+          border-bottom-right-radius: 5px;
+        }
+        
+        .chat-input {
+          display: flex;
+          padding: 12px;
+          border-top: 1px solid #eee;
+          background-color: white;
+        }
+        
+        .chat-input input {
+          flex-grow: 1;
+          padding: 10px 14px;
+          border: 1px solid #ddd;
+          border-radius: 20px;
+          outline: none;
+          font-size: 14px;
+        }
+        
+        .chat-input input:focus {
+          border-color: #a55eea;
+        }
+        
+        .chat-input button {
+          margin-left: 8px;
+          padding: 8px 16px;
+          background-color: #a55eea;
+          color: white;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: background-color 0.3s ease;
+        }
+        
+        .chat-input button:hover {
+          background-color: #8e44ad;
+        }
+        
+        .chat-typing {
+          display: none;
+          padding: 10px;
+          align-items: center;
+        }
+        
+        .dot {
+          height: 8px;
+          width: 8px;
+          background-color: #a55eea;
+          border-radius: 50%;
+          margin: 0 2px;
+          display: inline-block;
+          animation: pulse 1.5s infinite;
+        }
+        
+        .dot:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+        
+        .dot:nth-child(3) {
+          animation-delay: 0.4s;
+        }
+        
+        @keyframes pulse {
+          0% { transform: scale(0.8); opacity: 0.5; }
+          50% { transform: scale(1.2); opacity: 1; }
+          100% { transform: scale(0.8); opacity: 0.5; }
+        }
+        
+        /* Quick Replies */
+        .quick-replies {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: 8px;
+          margin-bottom: 12px;
+          align-self: flex-start;
+        }
+        
+        .quick-reply {
+          background-color: #fff;
+          border: 1px solid #a55eea;
+          color: #a55eea;
+          border-radius: 16px;
+          padding: 6px 12px;
+          margin: 0 8px 8px 0;
+          font-size: 12px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        
+        .quick-reply:hover {
+          background-color: #a55eea;
+          color: white;
+        }
+        
+        /* Options Selector */
+        .options-selector {
+          max-width: 90%;
+          align-self: flex-start;
+          background-color: #fff;
+          border-radius: 10px;
+          padding: 12px;
+          margin-bottom: 12px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .options-selector h4 {
+          margin-top: 0;
+          margin-bottom: 10px;
+          font-size: 14px;
+          color: #333;
+        }
+        
+        .option-buttons {
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .option-button {
+          background-color: #f2e7fe;
+          border: none;
+          border-radius: 8px;
+          padding: 8px 12px;
+          margin-bottom: 8px;
+          cursor: pointer;
+          text-align: left;
+          font-size: 13px;
+          transition: all 0.2s ease;
+        }
+        
+        .option-button:hover {
+          background-color: #e9d5ff;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="chatbot-container">
+        <div class="chat-box" id="chatBox">
+          <div class="chat-header">
+            <h3>Books of Hope Assistant</h3>
+            <button id="closeChat">×</button>
+          </div>
+          <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+              Hello! Welcome to Books of Hope. I'm here to help you share books and dreams. How can I assist you today?
+            </div>
+            <div class="quick-replies" id="initialOptions">
+              <div class="quick-reply">Donate Books</div>
+              <div class="quick-reply">Find Books</div>
+              <div class="quick-reply">About Us</div>
+              <div class="quick-reply">How It Works</div>
+              <div class="quick-reply">Login/Register</div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your message here...">
+            <button id="sendMessage">Send</button>
+          </div>
+          <div class="chat-typing" id="typingIndicator">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <button class="chat-button" id="chatButton">
+          <span class="chat-icon">💬</span>
+        </button>
+      </div>
+    
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const chatButton = document.getElementById('chatButton');
+        const chatBox = document.getElementById('chatBox');
+        const closeChat = document.getElementById('closeChat');
+        const userInput = document.getElementById('userInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const chatMessages = document.getElementById('chatMessages');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const initialOptions = document.getElementById('initialOptions');
+        
+        // Chat state
+        let waitingForBookDetails = false;
+        let waitingForLoginType = false;
+        
+        // Responses database
+        const responses = {
+          donate: {
+            keywords: ['donate', 'giving', 'contribution', 'give books', 'how to donate'],
+            response: "To donate books, you can fill out our donation form. Would you like to know more about the donation process?",
+            followUp: showDonationProcess
+          },
+          find: {
+            keywords: ['find', 'get books', 'need books', 'request', 'recipient'],
+            response: "If you're looking for books, you'll need to register as a recipient. Are you a student or representing an educational institution or NGO?",
+            followUp: showRecipientOptions
+          },
+          about: {
+            keywords: ['about', 'mission', 'vision', 'who are you', 'organization', 'story'],
+            response: "Books of Hope connects book donors with students in need. We believe in the transformative power of books. Our mission is to make education accessible by providing affordable books to those who need them most.",
+            followUp: null
+          },
+          how: {
+            keywords: ['how it works', 'process', 'steps', 'how to use'],
+            response: "Our process is simple: 1) Donors list books they want to donate, 2) Recipients browse and request books they need, 3) We facilitate the exchange through campaigns, 4) Books reach those who need them most!",
+            followUp: showHowItWorks
+          },
+          campaign: {
+            keywords: ['campaign', 'campaigns', 'drive', 'ongoing', 'active'],
+            response: "We have several active campaigns right now. Would you like to explore some of our ongoing campaigns?",
+            followUp: showCampaigns
+          },
+          login: {
+            keywords: ['login', 'register', 'sign up', 'account', 'sign in'],
+            response: "You can login or register as a donor, student, NGO, or educational institution. What type of account would you like to create?",
+            followUp: showLoginOptions
+          },
+          help: {
+            keywords: ['help', 'support', 'contact', 'assistance'],
+            response: "I'm here to help! You can ask about donating books, finding books, our campaigns, or creating an account. What would you like to know more about?",
+            followUp: null
+          }
+        };
+        
+        // Toggle chat box visibility
+        chatButton.addEventListener('click', function() {
+          chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        closeChat.addEventListener('click', function() {
+          chatBox.style.display = 'none';
+        });
+        
+        // Handle quick reply clicks
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('quick-reply')) {
+            const replyText = e.target.textContent;
+            addMessage(replyText, 'user');
+            processUserMessage(replyText);
+          }
+          
+          if (e.target.classList.contains('option-button')) {
+            const optionText = e.target.textContent;
+            addMessage(optionText, 'user');
+            
+            if (waitingForLoginType) {
+              waitingForLoginType = false;
+              handleLoginTypeSelection(optionText);
+            } else {
+              processUserMessage(optionText);
+            }
+          }
+        });
+        
+        // Send message when button is clicked
+        sendMessage.addEventListener('click', sendUserMessage);
+        
+        // Send message when Enter key is pressed
+        userInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            sendUserMessage();
+          }
+        });
+        
+        function sendUserMessage() {
+          const message = userInput.value.trim();
+          if (message) {
+            // Add user message to chat
+            addMessage(message, 'user');
+            
+            // Clear input field
+            userInput.value = '';
+            
+            // Process the message
+            if (waitingForBookDetails) {
+              waitingForBookDetails = false;
+              handleBookSubmission(message);
+            } else if (waitingForLoginType) {
+              waitingForLoginType = false;
+              handleLoginTypeSelection(message);
+            } else {
+              processUserMessage(message);
+            }
+          }
+        }
+        
+        function processUserMessage(message) {
+          // Show typing indicator
+          typingIndicator.style.display = 'flex';
+          
+          // Simulate thinking delay
+          setTimeout(() => {
+            typingIndicator.style.display = 'none';
+            
+            const lowerMessage = message.toLowerCase();
+            let matched = false;
+            
+            // Check for greetings
+            if (lowerMessage.match(/^(hi|hello|hey|greetings).*/i)) {
+              addMessage("Hello! How can I help you today with Books of Hope?", 'bot');
+              showQuickReplies();
+              matched = true;
+            }
+            
+            // Check for thank you
+            else if (lowerMessage.match(/^(thanks|thank you|thx).*/i)) {
+              addMessage("You're welcome! Is there anything else I can help you with?", 'bot');
+              showQuickReplies();
+              matched = true;
+            }
+            
+            // Check all response categories
+            if (!matched) {
+              for (const category in responses) {
+                const { keywords, response, followUp } = responses[category];
+                
+                if (keywords.some(keyword => lowerMessage.includes(keyword))) {
+                  addMessage(response, 'bot');
+                  
+                  if (followUp) {
+                    followUp();
+                  }
+                  
+                  matched = true;
+                  break;
+                }
+              }
+            }
+            
+            // If no match found, provide helpful fallback
+            if (!matched) {
+              addMessage("I'm not sure I understand. Could you please try asking about donating books, finding books, our campaigns, or creating an account?", 'bot');
+              showQuickReplies();
+            }
+          }, 1000);
+        }
+        
+        function addMessage(text, sender) {
+          const messageElement = document.createElement('div');
+          messageElement.classList.add('message', sender);
+          messageElement.textContent = text;
+          chatMessages.appendChild(messageElement);
+          
+          // Scroll to bottom of messages
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showQuickReplies() {
+          const quickRepliesElement = document.createElement('div');
+          quickRepliesElement.classList.add('quick-replies');
+          
+          const replies = [
+            'Donate Books',
+            'Find Books',
+            'About Us',
+            'How It Works',
+            'Login/Register'
+          ];
+          
+          replies.forEach(reply => {
+            const replyElement = document.createElement('div');
+            replyElement.classList.add('quick-reply');
+            replyElement.textContent = reply;
+            quickRepliesElement.appendChild(replyElement);
+          });
+          
+          chatMessages.appendChild(quickRepliesElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showDonationProcess() {
+          const processList = document.createElement('div');
+          processList.classList.add('message', 'bot');
+          processList.innerHTML = 
+            "Here's how you can donate books:<br><br>" +
+            "1. List the books you'd like to donate<br>" +
+            "2. Choose a campaign that resonates with you<br>" +
+            "3. Arrange pickup or drop-off<br>" +
+            "4. Your books will reach students in need<br><br>" +
+            "Would you like to list some books to donate now?";
+          chatMessages.appendChild(processList);
+          
+          const quickRepliesElement = document.createElement('div');
+          quickRepliesElement.classList.add('quick-replies');
+          
+          const replies = ['Yes, donate now', 'View campaigns first', 'Maybe later'];
+          
+          replies.forEach(reply => {
+            const replyElement = document.createElement('div');
+            replyElement.classList.add('quick-reply');
+            replyElement.textContent = reply;
+            quickRepliesElement.appendChild(replyElement);
+          });
+          
+          chatMessages.appendChild(quickRepliesElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showRecipientOptions() {
+          const optionsElement = document.createElement('div');
+          optionsElement.classList.add('options-selector');
+          
+          const heading = document.createElement('h4');
+          heading.textContent = 'I am a:';
+          optionsElement.appendChild(heading);
+          
+          const buttonContainer = document.createElement('div');
+          buttonContainer.classList.add('option-buttons');
+          
+          const options = ['Student', 'Educational Institution', 'NGO', 'Other'];
+          
+          options.forEach(option => {
+            const button = document.createElement('button');
+            button.classList.add('option-button');
+            button.textContent = option;
+            buttonContainer.appendChild(button);
+          });
+          
+          optionsElement.appendChild(buttonContainer);
+          chatMessages.appendChild(optionsElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showHowItWorks() {
+          const howItWorksElement = document.createElement('div');
+          howItWorksElement.classList.add('message', 'bot');
+          howItWorksElement.innerHTML = 
+            "Here's a detailed look at our process:<br><br>" +
+            "1. <b>List Your Books</b>: Donors catalog books they want to give<br>" +
+            "2. <b>Choose a Campaign</b>: Select a cause you care about<br>" +
+            "3. <b>We Handle Logistics</b>: We arrange pickup or delivery<br>" +
+            "4. <b>Books Reach Recipients</b>: Students get books they need<br><br>" +
+            "Would you like to donate or receive books?";
+          chatMessages.appendChild(howItWorksElement);
+          
+          const quickRepliesElement = document.createElement('div');
+          quickRepliesElement.classList.add('quick-replies');
+          
+          const replies = ['Donate Books', 'Find Books', 'Learn More'];
+          
+          replies.forEach(reply => {
+            const replyElement = document.createElement('div');
+            replyElement.classList.add('quick-reply');
+            replyElement.textContent = reply;
+            quickRepliesElement.appendChild(replyElement);
+          });
+          
+          chatMessages.appendChild(quickRepliesElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showCampaigns() {
+          const campaignsElement = document.createElement('div');
+          campaignsElement.classList.add('message', 'bot');
+          campaignsElement.innerHTML = 
+            "Here are some of our active campaigns:<br><br>" +
+            "• <b>Pages of Hope</b>: A Library for Displaced Children<br>" +
+            "• <b>Empowering Minds</b>: Books for Women in Rural Areas<br>" +
+            "• <b>Green Reads</b>: An Eco-Friendly Book Drive<br><br>" +
+            "Which campaign would you like to learn more about?";
+          chatMessages.appendChild(campaignsElement);
+          
+          const quickRepliesElement = document.createElement('div');
+          quickRepliesElement.classList.add('quick-replies');
+          
+          const replies = ['Pages of Hope', 'Empowering Minds', 'Green Reads', 'All Campaigns'];
+          
+          replies.forEach(reply => {
+            const replyElement = document.createElement('div');
+            replyElement.classList.add('quick-reply');
+            replyElement.textContent = reply;
+            quickRepliesElement.appendChild(replyElement);
+          });
+          
+          chatMessages.appendChild(quickRepliesElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showLoginOptions() {
+          waitingForLoginType = true;
+          
+          const optionsElement = document.createElement('div');
+          optionsElement.classList.add('options-selector');
+          
+          const heading = document.createElement('h4');
+          heading.textContent = 'Select account type:';
+          optionsElement.appendChild(heading);
+          
+          const buttonContainer = document.createElement('div');
+          buttonContainer.classList.add('option-buttons');
+          
+          const options = ['Donor', 'Student', 'NGO', 'Educational Institution'];
+          
+          options.forEach(option => {
+            const button = document.createElement('button');
+            button.classList.add('option-button');
+            button.textContent = option;
+            buttonContainer.appendChild(button);
+          });
+          
+          optionsElement.appendChild(buttonContainer);
+          chatMessages.appendChild(optionsElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        function handleLoginTypeSelection(accountType) {
+          addMessage(`Great! You've selected to register as a ${accountType.toLowerCase()}. In a real implementation, I would direct you to the ${accountType.toLowerCase()} registration form. For now, would you like to know what information you'll need to provide?`, 'bot');
+          
+          const quickRepliesElement = document.createElement('div');
+          quickRepliesElement.classList.add('quick-replies');
+          const replies = ['Yes, tell me more', 'No thanks'];
+          replies.forEach(reply => {
+            const replyElement = document.createElement('div');
+            replyElement.classList.add('quick-reply');
+            replyElement.textContent = reply;
+            quickRepliesElement.appendChild(replyElement);
+          }); 
+          chatMessages.appendChild(quickRepliesElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        function handleBookSubmission(books) {
+          addMessage(`Thank you for offering to donate: "${books}". In a real implementation, this would be added to your donation list. Would you like to add more books or proceed to selecting a campaign?`, 'bot');       
+          const quickRepliesElement = document.createElement('div');
+          quickRepliesElement.classList.add('quick-replies');         
+          const replies = ['Add more books', 'Select a campaign', 'Finish later'];
+          replies.forEach(reply => {
+            const replyElement = document.createElement('div');
+            replyElement.classList.add('quick-reply');
+            replyElement.textContent = reply;
+            quickRepliesElement.appendChild(replyElement);
+          });
+          
+          chatMessages.appendChild(quickRepliesElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        const quickReplies = document.querySelectorAll('.quick-reply');
+        quickReplies.forEach(reply => {
+          reply.addEventListener('click', function() {
+            const replyText = this.textContent;
+            addMessage(replyText, 'user');
+            processUserMessage(replyText);
+          });
+        });
+      });
+      </script>
+  
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is logged in
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const userType = localStorage.getItem('userType');
+    const authButtonsContainer = document.querySelector('.auth-buttons') || 
+                                document.querySelector('header').lastElementChild;
+    
+    if (authButtonsContainer) {
+      if (isLoggedIn) {
+        
+        authButtonsContainer.innerHTML = `
+          <a href="dashboard-${userType}.html" class="dashboard-btn">Dashboard</a>
+          <a href="#" id="logout-btn" class="logout-btn">Logout</a>
+        `;
+                document.getElementById('logout-btn').addEventListener('click', function(e) {
+          e.preventDefault();
+          localStorage.removeItem('isLoggedIn');
+          localStorage.removeItem('userType');
+          window.location.reload(); // Refresh the page
+        });
+      } else {
+       
+      }
+    }
+  });
+</script>
+  <style>
+    .dashboard-btn, .logout-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #7a3e72;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-left: 10px;
+      transition: background-color 0.3s;
+    }
+    
+    .dashboard-btn:hover, .logout-btn:hover {
+      background-color: #5a2c5a;
+    }
+  </style>
+
+</body>
+
+</html>

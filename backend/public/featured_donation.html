@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Featured Campaign Donation - BooksofHope</title>
+  <link rel="stylesheet" href="feature.css">
+  <!-- Link to the JavaScript file for featured donation logic -->
+  <script src="featuredDonation.js" defer></script>
+</head>
+<body>
+  <!-- (Include your header/navigation here if needed) -->
+  <form id="featuredDonationForm" method="POST">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+  
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+  
+    <label for="books">Number of Books:</label>
+    <input type="number" id="books" name="books" placeholder="Enter number of books" required>
+  
+    <label for="campaignName">Campaign Name:</label>
+    <select id="campaignName" name="campaignName">
+      <option value="1">Pages of Hope</option>
+      <option value="2">Empowering Minds</option>
+      <option value="3">Green Reads</option>
+      <option value="4">Hope Through Pages</option>
+      <option value="5">Community of Readers</option>
+    </select>
+  
+    <button type="submit" class="cta-btn">Submit Donation</button>
+  </form>
+  
+  <script>
+  // Submit form logic
+  document.getElementById('featuredDonationForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+  
+      // Get the form data
+      const formData = new FormData(event.target);
+      const campaignId = parseInt(formData.get('campaignName'));
+      const donatedBooks = parseInt(formData.get('books'));
+  
+      if (!isNaN(donatedBooks) && donatedBooks > 0) {
+          // Update the campaign with the donated books
+          updateCampaignProgress(campaignId, donatedBooks);
+  
+          // Optionally, show a success message
+          alert(`Thank you for donating ${donatedBooks} books to the campaign!`);
+          
+          // Reset form
+          event.target.reset();
+      } else {
+          alert("Please enter a valid number of books.");
+      }
+  });
+  
+  // Update campaign progress function
+  function updateCampaignProgress(campaignId, donatedBooks) {
+      // Your update logic goes here
+      // For example, update the UI or send this data to your backend
+  }
+  </script>
+  
+   
+    
+  <!-- (Include your footer here if needed) -->
+</body>
+</html>
